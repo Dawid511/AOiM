@@ -5,10 +5,14 @@ public class ThreeDim{
     ThreeDim(Figure figure, double h) {
         if (h <= 0)
             throw new IllegalArgumentException("zle dane");
+        
+            this.height = h;
+            this.figure = figure;
+
     }
 
     double calculateArea() {
-        return figure.calculateArea()*2 + figure.calculatePerimeter()*height;
+        return (figure.calculateArea()*2 + figure.calculatePerimeter()*height);
     }
 
     double calculateVolume() {
