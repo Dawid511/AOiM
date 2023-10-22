@@ -1,41 +1,29 @@
-import java.util.Scanner;
-
-public class Triangle extends Figure {
+public class Triangle extends Figure implements Printing {
     double a, b, c;
 
-    public Triangle() {
-
-        Scanner scanner = new Scanner(System.in);
-        boolean dobreDane = true;
-        while (dobreDane) {
-            System.out.println("Podaj bok a");
-            this.a = scanner.nextDouble();
-
-            System.out.println("Podaj bok b");
-            this.b = scanner.nextDouble();
-
-            System.out.println("Podaj bok c");
-            this.c = scanner.nextDouble();
-            if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
-                System.out.println("zle dane");
-
-            } else 
-                dobreDane = false;
+    public Triangle(double a, double b, double c) {
+        if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a){
+         throw new IllegalArgumentException("zle dane");
         }
-
-        scanner.close();
-
+            this.a = a;
+            this.b = b;
+            this.c = c;
     }
 
     @Override
     double calculateArea() {
-
+        double p = calculatePerimeter() / 2;
+        return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
     @Override
     double calculatePerimeter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calculatePerimeter'");
+        return this.a + this.b + this.c;
+    }
+
+    @Override
+    public void print() {
+        System.out.printf("Trojkat, pole: " + calculateArea() + ", obwod: " + calculatePerimeter() + "\n");
     }
 
 }
